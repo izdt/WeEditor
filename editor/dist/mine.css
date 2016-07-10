@@ -1,3 +1,10 @@
 .container{
     width: 760px;
 }
+.preview{
+    width: 500px;
+    height: 700px;
+    overflow-y: scroll;
+    border: 1px solid #ccc;
+    padding: 10px;
+}

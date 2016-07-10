@@ -1,7 +1,20 @@
 'use strict';
 (function($,window) {
-    var createButtons = function() {
-        
+    var edit = function() {
+        $('.summernote').removeClass('preview');
+        $('.summernote').summernote({focus: true});
+        //initSummernote();
+    };
+
+    var save = function() {
+        $('.summernote').addClass('preview');
+        var makrup = $('.summernote').summernote('code');
+        $('.summernote').summernote('destroy');
+    };
+
+    var addLinsteners = function() {
+      $('#edit').on('click',edit);
+      $('#save').on('click',save);
     };
 
     var RestButton = function (context) {
@@ -35,24 +48,21 @@
             contents: '<i class="fa fa-clipboard"/>',
             tooltip: 'CopyAll',
             click: function () {
-              var element = document.getElementsByClassName('panel-body')[0];
-              // Change selected area
-              var r = document.createRange();
-              r.selectNode(element);
-              var s = window.getSelection();
-              s.removeAllRanges();
-              s.addRange(r);
-              // Copy - requires clipboardWrite permission + crbug.com/395376 must be fixed
-              document.execCommand('copy');
+            var element = document.getElementsByClassName('panel-body')[0];
+            // Change selected area
+            var r = document.createRange();
+            r.selectNode(element);
+            var s = window.getSelection();
+            s.removeAllRanges();
+            s.addRange(r);
+            // Copy - requires clipboardWrite permission + crbug.com/395376 must be fixed
+            document.execCommand('copy');
             }
         });
         return button.render();   // return button as jquery object 
     };
-
-    $(document).ready(function() {
-      
-
-      $('.summernote').summernote({
+    var initSummernote = function() {
+        $('.summernote').summernote({
         height: 600,
         tabsize: 2,
         toolbar: [
@@ -84,6 +94,12 @@
         }
 
       });
+    }
+    
+    $(document).ready(function() {
       
+      initSummernote();
+      addLinsteners();
+
     });
 }(jQuery,window));
