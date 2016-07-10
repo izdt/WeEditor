@@ -2,13 +2,13 @@
 (function($,window) {
     var edit = function() {
         $('.summernote').removeClass('preview');
-        $('.summernote').summernote({focus: true});
-        //initSummernote();
+        //$('.summernote').summernote({focus: true});
+        initSummernote();
     };
 
     var save = function() {
         $('.summernote').addClass('preview');
-        var makrup = $('.summernote').summernote('code');
+        var markup = $('.summernote').summernote('code');
         $('.summernote').summernote('destroy');
     };
 
@@ -22,10 +22,12 @@
         // create button
         var button = ui.button({
             contents: '<i class="fa fa-refresh"/>',
-            //tooltip: 'Reset',
+            tooltip: 'Reset',
             click: function () {
-              //TODO: save to localstorage :
-              $('.summernote').summernote('reset');
+              var markup = $('.summernote').summernote('code');
+              localStorage.setItem("resetMark",markup);
+              //$('.summernote').summernote('reset');
+              $('.summernote').summernote('code','');
             }
         });
         return button.render();   // return button as jquery object 
@@ -37,6 +39,8 @@
             contents: '<i class="fa fa-undo"/>',
             tooltip: 'Undo Reset',
             click: function () {
+                var markup = localStorage.getItem("resetMark");
+                $('.summernote').summernote('code',markup);
             }
         });
         return button.render();   // return button as jquery object 
