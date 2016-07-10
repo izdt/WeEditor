@@ -6,41 +6,26 @@
   <title>summernote - bs3fa4</title>
 
   <!-- include jquery -->
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script> 
+  <script src="/node_modules/jquery/dist/jquery.js"></script> 
 
   <!-- include libs stylesheets -->
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" />
-  <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+  <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css" />
+  <script src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
+
+  <!-- include codemirror (codemirror.css, codemirror.js, xml.js, formatting.js)-->
+  <link rel="stylesheet" type="text/css" href="/node_modules/codemirror/lib/codemirror.css" />
+  <link rel="stylesheet" href="/node_modules/codemirror/theme/blackboard.css">
+  <link rel="stylesheet" href="/node_modules/codemirror/theme/monokai.css">
+  <script type="text/javascript" src="/node_modules/codemirror/lib/codemirror.js"></script>
+  <script src="/node_modules/codemirror/mode/xml/xml.js"></script>
 
   <!-- include summernote -->
-  <link rel="stylesheet" href="../dist/summernote.css">
-   <link rel="stylesheet" href="../dist/mine.css">
-  <script type="text/javascript" src="../dist/summernote.js"></script>
-
-  <script type="text/javascript">
-    $(document).ready(function() {
-      $('.summernote').summernote({
-        height: 600,
-        tabsize: 2,
-        toolbar: [
-  		    ['style', ['style']],
-            ['font', ['bold', 'underline', 'clear']],
-            ['fontname', ['fontname']],
-            ['color', ['color']],
-            ['para', [ 'paragraph']],
-            ['table', ['table']],
-            ['insert', ['link', 'picture']],
-            ['view', ['fullscreen', 'codeview', 'help']]
-  		  ],
-         fontNames: [
-            'Microsoft Yahei','Arial', 'Arial Black', 'Comic Sans MS', 'Courier New',
-            'Helvetica Neue', 'Helvetica', 'Impact', 'Lucida Grande',
-            'Tahoma', 'Times New Roman', 'Verdana'
-        ]
-
-      });
-    });
-  </script>
+  <link rel="stylesheet" href="/node_modules/summernote/dist/summernote.css">
+  <script type="text/javascript" src="/node_modules/summernote/dist/summernote.js"></script>
+  
+  <!-- include config -->
+  <link rel="stylesheet" href="../dist/mine.css">
+  <script type="text/javascript" src="../dist/mine.js"></script>
 </head>
 <body>
 <div class="container">

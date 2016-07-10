@@ -1,0 +1,26 @@
+{
+  "name": "we-editor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/izdt/WeEditor.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/izdt/WeEditor/issues"
+  },
+  "homepage": "https://github.com/izdt/WeEditor#readme",
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "codemirror": "^5.11.0",
+    "font-awesome": "^4.5.0",
+    "jquery": "^2.2.0",
+    "summernote": "^0.8.1"
+  }
+}
