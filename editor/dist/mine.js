@@ -4,20 +4,50 @@
         
     };
 
-    var HelloButton = function (context) {
+    var RestButton = function (context) {
         var ui = $.summernote.ui;
         // create button
         var button = ui.button({
-            contents: '<i class="fa fa-refresh"/> Hello',
-            tooltip: 'hello',
+            contents: '<i class="fa fa-refresh"/>',
+            //tooltip: 'Reset',
             click: function () {
-            // invoke insertText method with 'hello' on editor module.
-            context.invoke('editor.insertText', 'hello');
+              //TODO: save to localstorage :
+              $('.summernote').summernote('reset');
             }
         });
         return button.render();   // return button as jquery object 
     };
-
+    var UndoRestButton = function (context) {
+        var ui = $.summernote.ui;
+        // create button
+        var button = ui.button({
+            contents: '<i class="fa fa-undo"/>',
+            tooltip: 'Undo Reset',
+            click: function () {
+            }
+        });
+        return button.render();   // return button as jquery object 
+    };
+    var CopyAllButton = function (context) {
+        var ui = $.summernote.ui;
+        // create button
+        var button = ui.button({
+            contents: '<i class="fa fa-clipboard"/>',
+            tooltip: 'CopyAll',
+            click: function () {
+              var element = document.getElementsByClassName('panel-body')[0];
+              // Change selected area
+              var r = document.createRange();
+              r.selectNode(element);
+              var s = window.getSelection();
+              s.removeAllRanges();
+              s.addRange(r);
+              // Copy - requires clipboardWrite permission + crbug.com/395376 must be fixed
+              document.execCommand('copy');
+            }
+        });
+        return button.render();   // return button as jquery object 
+    };
 
     $(document).ready(function() {
       
@@ -33,8 +63,8 @@
             ['para', [ 'paragraph']],
             ['table', ['table']],
             ['insert', ['link', 'picture']],
-            ['view', ['fullscreen', 'codeview', 'help']],
-            ['mybutton', ['hello']]
+            ['view', ['fullscreen', 'codeview']],
+            ['custom', ['copyAll','reset','undoRest']]
   		  ],
         fontNames: [
             'Microsoft Yahei','Arial', 'Arial Black', 'Comic Sans MS', 'Courier New',
@@ -42,7 +72,9 @@
             'Tahoma', 'Times New Roman', 'Verdana'
           ],
         buttons: {
-           hello: HelloButton
+           reset: RestButton,
+           undoRest: UndoRestButton,
+           copyAll: CopyAllButton
         },
         codemirror: {
           mode: 'text/html',
