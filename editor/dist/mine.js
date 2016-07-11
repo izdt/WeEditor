@@ -1,12 +1,21 @@
 'use strict';
 (function($,window) {
+    var format = function() {
+        var cmEditor = $('.CodeMirror')[0].CodeMirror;
+        var totalLines = cmEditor.lineCount();
+        var totalChars = cmEditor.getTextArea().value.length;
+        cmEditor.autoFormatRange({line:0, ch:0}, {line:totalLines, ch:totalChars});
+    };
+
     var edit = function() {
+         $('.editor').removeClass('iphone');
         $('.summernote').removeClass('preview');
         //$('.summernote').summernote({focus: true});
         initSummernote();
     };
 
     var save = function() {
+        $('.editor').addClass('iphone');
         $('.summernote').addClass('preview');
         var markup = $('.summernote').summernote('code');
         $('.summernote').summernote('destroy');
@@ -52,22 +61,22 @@
             contents: '<i class="fa fa-clipboard"/>',
             tooltip: 'CopyAll',
             click: function () {
-            var element = document.getElementsByClassName('panel-body')[0];
-            // Change selected area
-            var r = document.createRange();
-            r.selectNode(element);
-            var s = window.getSelection();
-            s.removeAllRanges();
-            s.addRange(r);
-            // Copy - requires clipboardWrite permission + crbug.com/395376 must be fixed
-            document.execCommand('copy');
+                var container = document.getElementsByClassName('panel-body')[0];
+                // Change selected area
+                var range = document.createRange();
+                range.selectNodeContents(container);
+                var selection = window.getSelection();
+                selection.removeAllRanges();
+                selection.addRange(range);
+                // Copy - requires clipboardWrite permission + crbug.com/395376 must be fixed
+                document.execCommand('copy');
             }
         });
         return button.render();   // return button as jquery object 
     };
     var initSummernote = function() {
         $('.summernote').summernote({
-        height: 600,
+        height: 710,
         tabsize: 2,
         toolbar: [
   		    ['style', ['style']],
@@ -93,16 +102,37 @@
         codemirror: {
           mode: 'text/html',
           htmlMode: true,
+          lineWrapping: true,
           lineNumbers: true,
           theme: 'monokai'
-        }
+        },
+        enterHtml:'<p><br></p>'
 
       });
+    };
+
+    var summerCallback = function () {
+               
+        $('.summernote').summernote({
+        callbacks: {
+            onPaste: function(e) {
+            console.log('Called event paste');
+            }
+        }
+        });
+
+     
+        $('.summernote').on('summernote.codeview', function(e) {
+        console.log('Called event paste');
+        });
     }
     
     $(document).ready(function() {
       
       initSummernote();
+
+
+
       addLinsteners();
 
     });
