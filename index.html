@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>WeEditor</title>
+    <meta charset="UTF-8">
+    <title>WeEditor</title>
 
   <!-- include jquery -->
   <script src="/node_modules/jquery/dist/jquery.js"></script> 
@@ -26,17 +25,18 @@
   <script type="text/javascript" src="/node_modules/summernote/dist/summernote.js"></script>
   
   <!-- include config -->
-  <link rel="stylesheet" href="dist/mine.css">
-  <script type="text/javascript" src="dist/formatting.js"></script>
-  <script type="text/javascript" src="dist/mine.js"></script>
+  <script type="text/javascript" src="/editor/dist/formatting.js"></script>
+  <script type="text/javascript" src="/editor/dist/mine.js"></script>
+  <link rel="stylesheet" href="/editor/dist/home.css">
+    
 </head>
 <body>
-<div class="container">
-  <h4>
-  </h4>
-  <div class="summernote"></div>
-  <button id="edit" class="btn btn-primary" type="button">Edit</button>
-  <button id="save" class="btn btn-primary" type="button">Save</button>
-</div>
+    <div class="main">
+        <div class="editor">
+            <div class="summernote">
+
+            </div>
+        </div>
+    </div>
 </body>
 </html>

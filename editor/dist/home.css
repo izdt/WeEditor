@@ -1,0 +1,46 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.main {
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.editor {
+    width: 700px;
+    margin: 15px auto;
+}
+.iphone {
+    width: 480px;
+    height: 790px;
+    background: url('/images/iPhone6_Wireframe.png');
+    background-size: 100%;
+    background-position: 0;
+    margin: 0 auto;
+    padding: 66px 0px 0px 56px;
+}
+.preview{
+    width: 375px;
+    height: 665px;
+    overflow-y: scroll;
+    /* border: 1px solid #ccc; */
+    padding: 10px;
+    background: #fff;
+}
+
+::-webkit-scrollbar
+{
+  width: 5px;  /* for vertical scrollbars */
+  height: 5px; /* for horizontal scrollbars */
+}
+::-webkit-scrollbar-track
+{
+  //background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb
+{
+  background: rgba(0, 0, 0, 0.5);
+}
