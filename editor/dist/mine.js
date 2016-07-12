@@ -109,7 +109,7 @@
             ['custom', ['copyAll','save','reset','undoRest']]
   		  ],
         fontNames: [
-            'Microsoft Yahei','Arial','Helvetica Neue', 'Helvetica', 'Impact', 'Lucida Grande',
+            'Heiti SC','Microsoft Yahei','Arial','Helvetica Neue', 'Helvetica', 'Impact', 'Lucida Grande',
             'Tahoma', 'Times New Roman', 'Verdana'
           ],
         buttons: {
