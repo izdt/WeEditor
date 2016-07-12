@@ -125,7 +125,17 @@
           lineNumbers: true,
           theme: 'monokai'
         },
-        enterHtml:'<p><br></p>'
+        enterHtml:'<p><br></p>',
+        callbacks: {
+            onPaste: function(e) {
+                debugger
+                 var markup = $('.summernote').summernote('code');
+                 console.log(markup);
+                 if(!markup.trim().endsWith('<p><br></p>')){
+                     $('.summernote').summernote('code',markup+'<p><br></p>');
+                 }
+            }
+        }
 
       });
     };
