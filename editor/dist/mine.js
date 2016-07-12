@@ -8,22 +8,28 @@
     };
 
     var edit = function() {
-         $('.editor').removeClass('iphone');
+        $('.editor').removeClass('iphone');
         $('.summernote').removeClass('preview');
         //$('.summernote').summernote({focus: true});
         initSummernote();
     };
 
-    var save = function() {
+    var preview = function() {
         $('.editor').addClass('iphone');
         $('.summernote').addClass('preview');
         var markup = $('.summernote').summernote('code');
         $('.summernote').summernote('destroy');
     };
 
+    var backHistory = function() {
+      var markup = localStorage.getItem("editorHistory");
+      $('.summernote').summernote('code',markup);
+    };
+
     var addLinsteners = function() {
       $('#edit').on('click',edit);
-      $('#save').on('click',save);
+      $('#preview').on('click',preview);
+      $('#history').on('click',backHistory);
     };
 
     var SaveButton = function(context) {
@@ -34,13 +40,7 @@
             tooltip: 'Save',
             click: function () {
               var markup = $('.summernote').summernote('code');
-              var editorHistoryJson = localStorage.getItem('editorHistory') || "[]";
-              var editorHistory = JSON.parse(editorHistoryJson);
-              var index = editorHistory.length;
-              editorHistory[index] = markup;
-              localStorage.setItem('editorHistory',JSON.stringify(editorHistory));
-              $('.we-menu').append('<li class="history">History '+index+'</li>')
-              //localStorage.setItem("resetMark",markup);
+              localStorage.setItem('editorHistory',markup);
             }
         });
         return button.render();   // return button as jquery object 
