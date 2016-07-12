@@ -26,11 +26,31 @@
       $('#save').on('click',save);
     };
 
+    var SaveButton = function(context) {
+        var ui = $.summernote.ui;
+        // create button
+        var button = ui.button({
+            contents: '<i class="fa fa-save"/>',
+            tooltip: 'Save',
+            click: function () {
+              var markup = $('.summernote').summernote('code');
+              var editorHistoryJson = localStorage.getItem('editorHistory') || "[]";
+              var editorHistory = JSON.parse(editorHistoryJson);
+              var index = editorHistory.length;
+              editorHistory[index] = markup;
+              localStorage.setItem('editorHistory',JSON.stringify(editorHistory));
+              $('.we-menu').append('<li class="history">History '+index+'</li>')
+              //localStorage.setItem("resetMark",markup);
+            }
+        });
+        return button.render();   // return button as jquery object 
+    };
+
     var RestButton = function (context) {
         var ui = $.summernote.ui;
         // create button
         var button = ui.button({
-            contents: '<i class="fa fa-refresh"/>',
+            contents: '<i class="fa fa-trash-o"/>',
             tooltip: 'Reset',
             click: function () {
               var markup = $('.summernote').summernote('code');
@@ -84,20 +104,19 @@
             ['fontname', ['fontname']],
             ['color', ['color']],
             ['para', [ 'paragraph']],
-            ['table', ['table']],
             ['insert', ['link', 'picture']],
             ['view', ['fullscreen', 'codeview']],
-            ['custom', ['copyAll','reset','undoRest']]
+            ['custom', ['copyAll','save','reset','undoRest']]
   		  ],
         fontNames: [
-            'Microsoft Yahei','Arial', 'Arial Black', 'Comic Sans MS', 'Courier New',
-            'Helvetica Neue', 'Helvetica', 'Impact', 'Lucida Grande',
+            'Microsoft Yahei','Arial','Helvetica Neue', 'Helvetica', 'Impact', 'Lucida Grande',
             'Tahoma', 'Times New Roman', 'Verdana'
           ],
         buttons: {
            reset: RestButton,
            undoRest: UndoRestButton,
-           copyAll: CopyAllButton
+           copyAll: CopyAllButton,
+           save: SaveButton
         },
         codemirror: {
           mode: 'text/html',
