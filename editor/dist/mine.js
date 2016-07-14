@@ -23,6 +23,7 @@
 
     var backHistory = function() {
       var markup = localStorage.getItem("editorHistory");
+      if(!$('.editor').hasClass('iphone'))
       $('.summernote').summernote('code',markup);
     };
 
@@ -128,9 +129,7 @@
         enterHtml:'<p><br></p>',
         callbacks: {
             onPaste: function(e) {
-                debugger
                  var markup = $('.summernote').summernote('code');
-                 console.log(markup);
                  if(!markup.trim().endsWith('<p><br></p>')){
                      $('.summernote').summernote('code',markup+'<p><br></p>');
                  }
