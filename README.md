@@ -1,3 +1,4 @@
 # WeEditor
 
-## editor for web
+## editor for html
+## support view html code
